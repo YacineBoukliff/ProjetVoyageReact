@@ -17,7 +17,7 @@ const Header = ({CalculMoyenne , PaysTotal}) => {
           </div>
           <div className="bg-white p-4 rounded-xl shadow-sm">
             <p className="text-sm text-gray-600">Continents</p>
-            <p className="text-2xl font-bold text-gray-900">5/7</p>
+            <p className="text-2xl font-bold text-gray-900">5/6</p>
           </div>
           <div className="bg-white p-4 rounded-xl shadow-sm">
             <p className="text-sm text-gray-600">Note Moyenne</p>

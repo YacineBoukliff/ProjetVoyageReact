@@ -5,9 +5,9 @@ import ListeVoyage from "./components/ProjetVoyageV2/ListeVoyage"
 import Statistiques from "./components/ProjetVoyageV2/Statistique"
 import Layout from "./components/ProjetVoyageV2/Structure"
 
+
 const App = () => {
 
-console.log("Strict")
 
   const [tableau, setTableau] = useState(() => {
     const DataTableau = localStorage.getItem('tableau')
@@ -36,12 +36,23 @@ console.log("Strict")
     const PaysTotal = tableau.length
     return PaysTotal
   }
-
+  const AjouterVoyage = (data) => {
+    const NouveauVoyage = {
+      id: tableau.length + 1,
+      continent: data.continent,
+      pays: data.pays,
+      Date: data.Date,       
+      Duree: data.Duree,     
+      Budget: data.Budget,    
+      note: data.note
+    };
+    setTableau([...tableau, NouveauVoyage]);
+  };
   return (
     <Layout>
       <Header CalculMoyenne={CalculMoyenne()}  PaysTotal={Totalpays()}/>
       <div className="grid md:grid-cols-2 gap-6 mb-8">
-        <AjouterFormulaire />
+        <AjouterFormulaire AjouterVoyage={AjouterVoyage} />
         <Statistiques PaysTotal={Totalpays()} />
       </div>
       <ListeVoyage 
