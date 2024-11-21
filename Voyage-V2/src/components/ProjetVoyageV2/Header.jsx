@@ -2,7 +2,7 @@
 
 
 
-const Header = ({CalculMoyenne , PaysTotal}) => {
+const Header = ({CalculMoyenne , PaysTotal , CalculMoyenneBudget}) => {
     return (
       <div className="flex flex-col md:flex-row gap-10 mb-8">
         <div className="flex">
@@ -16,8 +16,8 @@ const Header = ({CalculMoyenne , PaysTotal}) => {
             <p className="text-2xl font-bold text-gray-900">{PaysTotal}</p>
           </div>
           <div className="bg-white p-4 rounded-xl shadow-sm">
-            <p className="text-sm text-gray-600">Continents</p>
-            <p className="text-2xl font-bold text-gray-900">5/6</p>
+            <p className="text-sm text-gray-600">Budget Moyen</p>
+            <p className="text-2xl font-bold text-gray-900">{CalculMoyenneBudget.toFixed(2)}€</p>
           </div>
           <div className="bg-white p-4 rounded-xl shadow-sm">
             <p className="text-sm text-gray-600">Note Moyenne</p>

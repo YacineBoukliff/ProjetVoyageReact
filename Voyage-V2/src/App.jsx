@@ -8,7 +8,6 @@ import Layout from "./components/ProjetVoyageV2/Structure"
 
 const App = () => {
 
-
   const [tableau, setTableau] = useState(() => {
     const DataTableau = localStorage.getItem('tableau')
     return DataTableau ? JSON.parse(DataTableau) : [
@@ -26,11 +25,15 @@ const App = () => {
     setTableau(tableau.filter(t => t.id !== id))
   }
 
-  const CalculMoyenne = () => {
-    const somme = tableau.reduce((acc,element) => acc + element.note, 0)
-    const moyenne = somme / tableau.length 
-    return moyenne
-  }
+  const CalculMoyenne = () => tableau.reduce((acc, element) => acc + element.note, 0) / tableau.length;
+
+ const CalculMoyenneBudget = () => {
+ const somme =  tableau.reduce((acc, element) => acc + element.Budget, 0) 
+
+ const BudgetMoyen = somme / tableau.length
+
+return BudgetMoyen
+ }
 
   const Totalpays = () => {
     const PaysTotal = tableau.length
@@ -50,7 +53,7 @@ const App = () => {
   };
   return (
     <Layout>
-      <Header CalculMoyenne={CalculMoyenne()}  PaysTotal={Totalpays()}/>
+      <Header CalculMoyenne={CalculMoyenne()}  PaysTotal={Totalpays()} CalculMoyenneBudget={CalculMoyenneBudget()}/>
       <div className="grid md:grid-cols-2 gap-6 mb-8">
         <AjouterFormulaire AjouterVoyage={AjouterVoyage} />
         <Statistiques PaysTotal={Totalpays()} />

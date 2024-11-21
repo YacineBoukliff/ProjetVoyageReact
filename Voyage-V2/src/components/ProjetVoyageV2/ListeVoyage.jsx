@@ -15,7 +15,7 @@ const ListeVoyage = ({tableau, SupprimerElementTableau}) => {
               <option>Afrique</option>
             </select>
             <select className="px-3 py-1.5 bg-gray-50 border border-gray-300 rounded-lg text-sm">
-              <option>Trier par date</option>
+              <option>Trier par budget</option>
               <option>Trier par note</option>
               <option>Trier par pays</option>
             </select>
