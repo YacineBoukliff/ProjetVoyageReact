@@ -39,6 +39,8 @@ return BudgetMoyen
     const PaysTotal = tableau.length
     return PaysTotal
   }
+
+  const test = 1
   const AjouterVoyage = (data) => {
     const NouveauVoyage = {
       id: tableau.length + 1,
