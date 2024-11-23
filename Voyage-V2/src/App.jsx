@@ -22,6 +22,7 @@ const App = () => {
   }, [tableau])
 
   const SupprimerElementTableau = (id) => {
+   
     setTableau(tableau.filter(t => t.id !== id))
   }
 
@@ -41,6 +42,9 @@ return BudgetMoyen
   }
 
   const test = 1
+
+  console.log(test)
+  
   const AjouterVoyage = (data) => {
     const NouveauVoyage = {
       id: tableau.length + 1,
