@@ -106,30 +106,5 @@ src/
    - Flux unidirectionnel des données
    - Props pour la communication
 
-## 🎯 Axes d'Amélioration
 
-- [ ] Intégration d'une base de données
-- [ ] Système d'authentification
-- [ ] Ajout de photos pour les voyages
-- [ ] Exportation des données en CSV/PDF
-- [ ] Visualisations graphiques avancées
-- [ ] Système de tags personnalisés
-- [ ] Commentaires détaillés par voyage
 
-## 🤝 Contribution
-
-Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou soumettre une pull request.
-
-## 📄 Licence
-
-Ce projet est sous licence MIT - voir le fichier [LICENSE.md](LICENSE.md) pour plus de détails.
-
-## 🙏 Remerciements
-
-- React Team pour leur framework incroyable
-- Tailwind CSS pour leur système de design
-- La communauté open source pour leurs contributions
-
----
-
-Fait avec ❤️ par [Votre Nom]
