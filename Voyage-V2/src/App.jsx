@@ -4,6 +4,7 @@ import Header from "./components/ProjetVoyageV2/Header"
 import ListeVoyage from "./components/ProjetVoyageV2/ListeVoyage"
 import Statistiques from "./components/ProjetVoyageV2/Statistique"
 import Layout from "./components/ProjetVoyageV2/Structure"
+import { v4 as uuidv4 } from 'uuid';
 
 
 const App = () => {
@@ -16,6 +17,50 @@ const App = () => {
     
     ]
   })
+
+
+const [continentSelectionne, setFiltreselectionner] = useState('Tous les continents')
+const [recherche, setRecherche] = useState('')
+const [tri, setTri] = useState('default')
+
+const handleRecherche = (e) => {
+  setRecherche(e.target.value)
+}
+
+
+const handleTri = (e) => {
+  setTri(e.target.value)
+}
+
+const FiltreSelecteur = () => {
+
+  const filtreContinent = continentSelectionne === "Tous les continents" 
+    ? tableau 
+    : tableau.filter(voyage => voyage.continent === continentSelectionne)
+
+  
+  const filtreRecherche = filtreContinent.filter(voyage => 
+    voyage.pays.toLowerCase().includes(recherche.toLowerCase()) ||
+    voyage.continent.toLowerCase().includes(recherche.toLowerCase())
+  )
+
+  
+  if (tri === 'budget') {
+    return [...filtreRecherche].sort((a, b) => b.Budget - a.Budget)
+  }
+  if (tri === 'note') {
+    return [...filtreRecherche].sort((a, b) => b.note - a.note)
+  }
+  if (tri === 'pays') {
+    return [...filtreRecherche].sort((a, b) => a.pays.localeCompare(b.pays))
+  }
+  return filtreRecherche
+
+}
+
+  const TargetFiltre = (e) => {
+    setFiltreselectionner(e.target.value)
+  }
 
   useEffect(() => {
     localStorage.setItem('tableau', JSON.stringify(tableau))
@@ -40,14 +85,10 @@ return BudgetMoyen
     const PaysTotal = tableau.length
     return PaysTotal
   }
-
-  const test = 1
-
-  console.log(test)
   
   const AjouterVoyage = (data) => {
     const NouveauVoyage = {
-      id: tableau.length + 1,
+      id: uuidv4(),
       continent: data.continent,
       pays: data.pays,
       Date: data.Date,       
@@ -57,18 +98,25 @@ return BudgetMoyen
     };
     setTableau([...tableau, NouveauVoyage]);
   };
+
   return (
     <Layout>
-      <Header CalculMoyenne={CalculMoyenne()}  PaysTotal={Totalpays()} CalculMoyenneBudget={CalculMoyenneBudget()}/>
-      <div className="grid md:grid-cols-2 gap-6 mb-8">
-        <AjouterFormulaire AjouterVoyage={AjouterVoyage} />
-        <Statistiques PaysTotal={Totalpays()} />
-      </div>
-      <ListeVoyage 
-        tableau={tableau} 
-        SupprimerElementTableau={SupprimerElementTableau}
-      />
-    </Layout>
+    <Header CalculMoyenne={CalculMoyenne()} PaysTotal={Totalpays()} CalculMoyenneBudget={CalculMoyenneBudget()}/>
+    <div className="grid md:grid-cols-2 gap-6 mb-8">
+      <AjouterFormulaire AjouterVoyage={AjouterVoyage} />
+      <Statistiques PaysTotal={Totalpays()} />
+    </div>
+    <ListeVoyage 
+      tableau={FiltreSelecteur()} 
+      SupprimerElementTableau={SupprimerElementTableau}
+      TargetFiltre={TargetFiltre}
+      continentSelectionne={continentSelectionne}
+      recherche={recherche}
+      handleRecherche={handleRecherche}
+      tri={tri}
+      handleTri={handleTri}
+    />
+  </Layout>
   )
 }
 
